@@ -29,7 +29,11 @@ export default new SparkCommand({
         .setColor('Red')
         .setTitle('❌ Error')
         .setDescription('Could not find the role `Club Member`!');
-      return interaction.reply({ embeds: [embed] });
+
+      return interaction.reply({
+        embeds: [embed],
+        ephemeral: true,
+      });
     }
 
     if (!dataKey) {
@@ -38,7 +42,10 @@ export default new SparkCommand({
         .setTitle('❌ Error')
         .setDescription('This key could not be found!');
 
-      return interaction.reply({ embeds: [embed] });
+      return interaction.reply({
+        embeds: [embed],
+        ephemeral: true,
+      });
     }
 
     if (dataKey !== 'Not Claimed') {
@@ -47,7 +54,10 @@ export default new SparkCommand({
         .setTitle('❌ Error')
         .setDescription('This is already claimed!');
 
-      return interaction.reply({ embeds: [embed] });
+      return interaction.reply({
+        embeds: [embed],
+        ephemeral: true,
+      });
     }
 
     const newData = {
@@ -69,9 +79,15 @@ export default new SparkCommand({
         .setColor('Red')
         .setTitle('❌ Error')
         .setDescription('Unable to add the role `Club Member` to you!');
-      return interaction.reply({ embeds: [embed] });
+      return interaction.reply({
+        embeds: [embed],
+        ephemeral: true,
+      });
     }
 
-    return interaction.reply({ embeds: [embed] });
+    return interaction.reply({
+      embeds: [embed],
+      ephemeral: true,
+    });
   },
 });
