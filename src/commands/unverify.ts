@@ -48,11 +48,11 @@ export default new SparkCommand({
       });
     }
 
-    if (dataKey !== 'Not Claimed') {
+    if (dataKey === 'Not Claimed') {
       const embed = new EmbedBuilder()
         .setColor('Red')
         .setTitle('❌ Error')
-        .setDescription('This is already claimed!');
+        .setDescription('This key is not claimed!');
 
       return interaction.reply({
         embeds: [embed],
@@ -62,7 +62,7 @@ export default new SparkCommand({
 
     const newData = {
       ...data,
-      [key]: interaction.user.id,
+      [key]: "Not Claimed",
     };
 
     fs.writeFileSync('data.json', JSON.stringify(newData, null, 2), 'utf-8');
@@ -70,15 +70,15 @@ export default new SparkCommand({
     const embed = new EmbedBuilder()
       .setColor('Green')
       .setTitle('✅ Success')
-      .setDescription('Successfully verified you!\nYou now have the `Club Member` role.');
+      .setDescription('Successfully unverified you!\nYou no longer the `Club Member` role.');
 
     try {
-      await interaction.member.roles.add(verifyRole);
+      await interaction.member.roles.remove(verifyRole);
     } catch (e) {
       const embed = new EmbedBuilder()
         .setColor('Red')
         .setTitle('❌ Error')
-        .setDescription('Unable to add the role `Club Member` to you!');
+        .setDescription('Unable to remove the role `Club Member` to you!');
 
       return interaction.reply({
         embeds: [embed],
