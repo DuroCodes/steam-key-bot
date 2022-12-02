@@ -70,7 +70,7 @@ export default new SparkCommand({
     const embed = new EmbedBuilder()
       .setColor('Green')
       .setTitle('✅ Success')
-      .setDescription('Successfully unverified you!\nYou no longer the `Club Member` role.');
+      .setDescription('Successfully unverified you!\nYou no longer have the `Club Member` role.');
 
     try {
       await interaction.member.roles.remove(verifyRole);
